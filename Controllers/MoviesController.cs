@@ -34,7 +34,7 @@ public async Task<IActionResult> Index(string movieGenre, int movieYear, string 
                                     orderby m.Genre
                                     select m.Genre;
     IQueryable<int> yearQuery = from m in _context.Movie
-                                    orderby m.ReleaseDate.Year
+                                    orderby m.ReleaseDate.Year ascending
                                     select m.ReleaseDate.Year;
 
     var movies = from m in _context.Movie
