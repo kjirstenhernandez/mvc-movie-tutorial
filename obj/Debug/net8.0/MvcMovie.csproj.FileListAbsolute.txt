@@ -300,3 +300,4 @@ D:\BYU-I\CSE325\aspdotnet-mvc-tutorial\MvcMovie\bin\Debug\net8.0\runtimes\win\li
 D:\BYU-I\CSE325\aspdotnet-mvc-tutorial\MvcMovie\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\BYU-I\CSE325\aspdotnet-mvc-tutorial\MvcMovie\obj\Debug\net8.0\MvcMovie.csproj.AssemblyReference.cache
 D:\BYU-I\CSE325\aspdotnet-mvc-tutorial\MvcMovie\obj\Debug\net8.0\MvcMovie.csproj.Up2Date
+d:\BYU-I\CSE325\aspdotnet-mvc-tutorial\MvcMovie\obj\Debug\net8.0\MvcMovie.sourcelink.json

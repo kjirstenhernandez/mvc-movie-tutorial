@@ -22,7 +22,7 @@ namespace MvcMovie.Controllers
         // GET: Movies
         
 // GET: Movies
-public async Task<IActionResult> Index(string movieGenre, string searchString)
+public async Task<IActionResult> Index(string movieGenre, int movieYear, string searchString)
 {
     if (_context.Movie == null)
     {
@@ -33,6 +33,10 @@ public async Task<IActionResult> Index(string movieGenre, string searchString)
     IQueryable<string> genreQuery = from m in _context.Movie
                                     orderby m.Genre
                                     select m.Genre;
+    IQueryable<int> yearQuery = from m in _context.Movie
+                                    orderby m.ReleaseDate.Year
+                                    select m.ReleaseDate.Year;
+
     var movies = from m in _context.Movie
                  select m;
 
@@ -46,8 +50,13 @@ public async Task<IActionResult> Index(string movieGenre, string searchString)
         movies = movies.Where(x => x.Genre == movieGenre);
     }
 
+    if (movieYear != 0) {
+        movies = movies.Where(y => y.ReleaseDate.Year >= movieYear);
+    }
+
     var movieGenreVM = new MovieGenreViewModel
     {
+        Years = new SelectList(await yearQuery.Distinct().Order().ToListAsync()),
         Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
         Movies = await movies.ToListAsync()
     };
@@ -115,7 +124,7 @@ public async Task<IActionResult> Index(string movieGenre, string searchString)
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Rating,Price")] Movie movie)
         {
             if (id != movie.Id)
             {
